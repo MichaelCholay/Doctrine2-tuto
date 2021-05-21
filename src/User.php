@@ -24,7 +24,16 @@ class User
      */
     protected $name;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Bug", mappedBy="reporter")
+     * @var Bug[] An ArrayCollection of Bug objects.
+     */
     protected $reportedBugs; // for One-to-Many relation (inverse side)
+
+    /**
+     * @ORM\OneToMany(targetEntity="Bug", mappedBy="engineer")
+     * @var Bug[] An ArrayCollection of Bug objects.
+     */
     protected $assignedBugs;
 
     public function addReportedBug(Bug $bug)
