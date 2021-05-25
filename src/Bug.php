@@ -5,7 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=BugRepository::class)
  * @ORM\Table(name="bugs")
  */
 class Bug
@@ -50,6 +50,11 @@ class Bug
      * @ORM\ManyToOne(targetEntity="User", inversedBy="reportedBugs")
      */
     protected $reporter;
+
+    public function close()
+    {
+        $this->status = "CLOSE";
+    }
 
     public function setEngineer(User $engineer)
     {
